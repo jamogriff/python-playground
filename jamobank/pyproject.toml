@@ -1,0 +1,15 @@
+[project]
+name = "jamobank"
+version = "0.1.0"
+description = "Simple persisted bank account used to learn Python"
+authors = [
+  { name="Jamison Griffith", email="jamison.griffith@gmail.com" }
+]
+dependencies = [
+  "SQLAlchemy >2.0,<2.2"
+]
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
