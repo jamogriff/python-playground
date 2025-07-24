@@ -10,6 +10,17 @@ class Book:
         self._title = title
         self._author = author
 
+    def __str__(self) -> str:
+        return f'{self._title} by {self._author} ({self._id})'
+
+    def __repr__(self) -> str:
+        return f'Book(id={self._id}, isbn={self._isbn}, title={self._title}, author={self._author})'
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Book):
+            return NotImplemented
+        return self._id == other.id
+
     @property
     def id(self) -> str:
         return self._id

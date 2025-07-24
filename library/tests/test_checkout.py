@@ -13,12 +13,25 @@ class TestCheckout(TestCase):
         book = library.books[0]
         user_2 = library.users[1]
 
+        self.assertFalse(library.is_book_checked_out(book))
         library.checkout(user, book)
-        # TODO check against checkout to ensure transfers
+        self.assertTrue(library.is_book_checked_out(book))
 
-        # TODO check syntax
-        #self.assertRaises(RuntimeError, library.checkout_book, user_2, book)
+        # Another user cannot checkout that book while its checked out
+        self.assertRaises(RuntimeError, library.checkout, user_2, book)
 
+    def test_user_able_to_return_book(self):
+        library = LibraryFactory.make('Arvada Heritage Library')
+        user = library.users[0]
+        book = library.books[0]
+        user_2 = library.users[1]
 
+        library.checkout(user, book)
+
+        # Another user cannot checkout that book while its checked out
+        self.assertRaises(RuntimeError, library.checkout, user_2, book)
+
+        library.return_book(book)
+        library.checkout(user_2, book)
 
 
