@@ -1,12 +1,22 @@
-from __future__ import annotations # Used to avoid circular references/or classes not initialized yet
-from dataclasses import dataclass
+import uuid
 
 class Book:
+    """Represents a physical/digital book that is able to be\
+       transfered between a user and a library."""
 
-    def __init__(self, title: str, author: str):
+    def __init__(self, isbn: str, title: str, author: str):
+        self._id = uuid.uuid4()
+        self._isbn = isbn
         self._title = title
         self._author = author
-        self.inventory_items = []
+
+    @property
+    def id(self) -> str:
+        return self._id
+
+    @property
+    def isbn(self) -> str:
+        return self._isbn
 
     @property
     def title(self) -> str:
@@ -15,13 +25,3 @@ class Book:
     @property
     def author(self) -> str:
         return self._author
-
-    def add_inventory_item(self, inventory_item: InventoryItem):
-        self.inventory_items.append(inventory_item)
-
-
-@dataclass
-class InventoryItem:
-    id: str
-    book: Book
-
