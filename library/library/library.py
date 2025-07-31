@@ -48,20 +48,33 @@ class Library:
 
     def search_catalog(self, *, query: str = None, sort_by: str = 'title', order: str = 'desc') -> list:
         # Return early if invalid sort method passed
-        # Can't use callable() function in conjunction because apparently the 
-        # book properties aren't callable?
+        # Can't use callable() function in conjunction to validate 
+         #because apparently the book properties aren't callable?
         if not hasattr(self._books[0], sort_by):
             raise RuntimeError('Invalid sorting method encountered')
 
+        # Search books first to optimize further downstream list operations
+        if (query):
+            query = query.lower()
+            books = []
+            for book in self._books:
+                if query in book.title.lower() or query in book.author.lower():
+                    books.append(book)
+
+            if len(books) == 0:
+                return [];
+        else:
+            books = self._books
+
+
         # Aggregate books by ISBN (i.e. only return a single book if that book has multiple copies)
         # TODO: definitely more Pythonic way to accomplish this
-        isbns_encountered = []
+        isbns_encountered = set()
         aggregated_books = []
-        for book in self._books:
+        for book in books:
             if book.isbn not in isbns_encountered:
+                isbns_encountered.add(book.isbn)
                 aggregated_books.append(book)
-                isbns_encountered.append(book.isbn)
-
 
         if (order != 'desc'):
             aggregated_books.sort(key=lambda b: getattr(b, sort_by), reverse=True)
