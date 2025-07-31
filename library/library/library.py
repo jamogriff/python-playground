@@ -46,7 +46,7 @@ class Library:
         # TODO: check if already present
         self._books.append(book)
 
-    def search_catalog(self, query: str, order_by: str, sort_by: str) -> list:
+    def search_catalog(self, *, query: str = None, sort_by: str = 'title', order: str = 'desc') -> list:
         pass
 
     def checkout(self, user: User, book: Book):
