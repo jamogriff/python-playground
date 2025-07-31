@@ -1,6 +1,6 @@
 import time
-from .book import Book
-from .user import User
+from jamolib.models.book import Book
+from jamolib.models.user import User
 
 class Checkout:
     """Many-to-many between users and books to log\

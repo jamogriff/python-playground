@@ -1,7 +1,7 @@
 import time
-from .book import Book
-from .user import User
-from .checkout import Checkout
+from jamolib.models.book import Book
+from jamolib.models.user import User
+from jamolib.models.checkout import Checkout
 
 class Library:
 
@@ -39,17 +39,18 @@ class Library:
         return self._checkouts
 
     def add_user(self, user: User):
-        # TODO: check if already present
         self._users.append(user)
 
     def add_book(self, book: Book):
-        # TODO: check if already present
         self._books.append(book)
 
     def search_catalog(self, *, query: str = None, sort_by: str = 'title', order: str = 'desc') -> list:
-        # Return early if invalid sort method passed
+        """Query to search book titles or authors.
+           Able to be sorted by any book property and determine result order (descending by default).
+           Uses query, sort_by and order kwargs only."""
+
         # Can't use callable() function in conjunction to validate 
-         #because apparently the book properties aren't callable?
+        # because apparently the book properties aren't callable?
         if not hasattr(self._books[0], sort_by):
             raise RuntimeError('Invalid sorting method encountered')
 
@@ -68,7 +69,6 @@ class Library:
 
 
         # Aggregate books by ISBN (i.e. only return a single book if that book has multiple copies)
-        # TODO: definitely more Pythonic way to accomplish this
         isbns_encountered = set()
         aggregated_books = []
         for book in books:
@@ -108,7 +108,6 @@ class Library:
 
     def _get_most_recent_checkout(self, book: Book) -> Book | None:
         recent_checkouts = self._sort_checkouts_by_most_recent()
-        # TODO review this incantation
         return next((c for c in recent_checkouts if c.book == book), None)
 
     def _sort_checkouts_by_most_recent(self) -> list:

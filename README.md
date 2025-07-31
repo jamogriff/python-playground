@@ -14,37 +14,35 @@ backend developer applying OOP patterns and package best-practices in Python.
 - `@classmethod`, `@property` decorators
 - Package structure
 - Unit testing
-- Intro to inheritance
+- Inheritance with abstract base classes
 - Intro to entity persistence with SQLAlchemy
 
 **Project:**
 The Jamobank package provides the `BankAccount` class with robust deposit and withdraw methods.
 
-## Week 2: Advanced OOP + Dunder Methods + Type Hints
+## Week 2: More OOP + Dunder Methods
 
 **Topics:**
-- __init__, __str__, __eq__, __repr__, etc.
+- Dunder methods
 - List comprehensions
-- Inheritance, mixins, abstract base classes
-- Type hints (typing) + mypy
+- Linters (`ruff`, `flake8`, `black`)
 
 **Project:**
-Build a small library system: Book, Library, User classes with __eq__, custom sorting, and type annotations.
-
-**Resources:**
-[Typing Cheat Sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
+The `library` package provides the core functionality of a library's system of users checking out books.
 
 ## Week 3: Decorators + Context Managers + Modules
 
 **Topics:**
 - Function and class decorators (@wraps, @classmethod)
+- Mixins
 - with blocks + __enter__ / __exit__
-- Linters (`ruff`, `flake8`, `black`)
+- Type hints (typing) + mypy
 
 **Project:**
 Write a @logger decorator to log function calls and a context manager for timing code blocks.
 
 **Resources:**
+- [Typing Cheat Sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
 - [Real Python – Decorators](https://realpython.com/primer-on-python-decorators/)
 - [Python Docs – Context Managers](https://docs.python.org/3/library/contextlib.html)
 

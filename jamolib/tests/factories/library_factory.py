@@ -1,7 +1,7 @@
 from faker import Faker
-from library.user import User
-from library.book import Book
-from library.library import Library
+from jamolib.models.user import User
+from jamolib.models.book import Book
+from jamolib.models.library import Library
 
 class LibraryFactory:
     """Bootstraps a library instance with users and books."""

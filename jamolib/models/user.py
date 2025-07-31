@@ -1,6 +1,4 @@
-from .abstract_borrower import AbstractBorrower
-
-class User(AbstractBorrower):
+class User():
 
     def __init__(self, name: str):
         super().__init__()

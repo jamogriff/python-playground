@@ -1,5 +1,5 @@
 from unittest import TestCase
-from library.user import User
+from jamolib.models.user import User
 
 class TestUser(TestCase):
 
@@ -7,5 +7,4 @@ class TestUser(TestCase):
         user = User('Seymour Butts')
 
         self.assertEqual(user.name, 'Seymour Butts')
-        self.assertEqual(user.get_borrowed_books(), [])
 

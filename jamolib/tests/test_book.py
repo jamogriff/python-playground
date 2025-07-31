@@ -1,6 +1,6 @@
 from unittest import TestCase
 from uuid import UUID
-from library.book import Book
+from jamolib.models.book import Book
 
 class TestBook(TestCase):
 
