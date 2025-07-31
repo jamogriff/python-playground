@@ -3,6 +3,7 @@ from jamolib.models.user import User
 from jamolib.models.book import Book
 from jamolib.models.library import Library
 
+
 class LibraryFactory:
     """Bootstraps a library instance with users and books."""
 
@@ -11,8 +12,11 @@ class LibraryFactory:
         fake = Faker()
         library = Library(name)
         books = [Book(fake.isbn10(), fake.sentence(), fake.name()) for n in range(20)]
-        book_with_multiple_copies = [Book('123456789', 'Prince Geno Overcomes Hercules', 'Jamison Griffith') for n in range(4)]
-        
+        book_with_multiple_copies = [
+            Book("123456789", "Prince Geno Overcomes Hercules", "Jamison Griffith")
+            for n in range(4)
+        ]
+
         for book in books:
             library.add_book(book)
 
@@ -25,5 +29,3 @@ class LibraryFactory:
             library.add_user(user)
 
         return library
-
-

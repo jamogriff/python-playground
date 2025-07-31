@@ -5,10 +5,11 @@ from jamolib.models.book import Book
 from jamolib.models.library import Library
 from jamolib.tests.factories.library_factory import LibraryFactory
 
+
 class TestCheckout(TestCase):
 
     def setUp(self):
-        self.library = LibraryFactory.make('Arvada Heritage Library')
+        self.library = LibraryFactory.make("Arvada Heritage Library")
 
     def test_user_able_to_checkout(self):
         user = self.library.users[0]
@@ -34,5 +35,3 @@ class TestCheckout(TestCase):
 
         self.library.return_book(book)
         self.library.checkout(user_2, book)
-
-
