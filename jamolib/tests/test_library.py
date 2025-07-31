@@ -18,21 +18,27 @@ class TestLibrary(TestCase):
 
         self.assertEqual(len(catalog), 1)
 
-    def test_catalog_search_results_are_sorted(self):
+    def test_catalog_search_results_are_sorted_by_title(self):
         catalog_sorted_by_title = self.library.search_catalog()
-        catalog_sorted_by_title_in_opposite_order = self.library.search_catalog(
-            order="asc"
-        )
-        catalog_sorted_by_author = self.library.search_catalog(sort_by="author")
 
         self.assertTrue(
             ord(catalog_sorted_by_title[0].title[0])
             < ord(catalog_sorted_by_title[-1].title[0])
         )
+
+    def test_catalog_search_result_ordinality(self):
+        catalog_sorted_by_title_in_opposite_order = self.library.search_catalog(
+            order="asc"
+        )
+
         self.assertTrue(
             ord(catalog_sorted_by_title_in_opposite_order[0].title[0])
             > ord(catalog_sorted_by_title_in_opposite_order[-1].title[0])
         )
+
+    def test_catalog_search_results_can_be_sorted_by_author(self):
+        catalog_sorted_by_author = self.library.search_catalog(sort_by="author")
+
         self.assertTrue(
             ord(catalog_sorted_by_author[0].author[0])
             < ord(catalog_sorted_by_author[-1].author[0])

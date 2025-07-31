@@ -1,0 +1,12 @@
+[project]
+name = "jamolib"
+version = "0.8.0"
+description = "A simple library system for users to search and checkout books."
+authors = [
+  { name="Jamison Griffith", email="jamison.griffith@gmail.com" }
+]
+requires-python = ">= 3.10"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
