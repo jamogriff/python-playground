@@ -24,6 +24,7 @@ class TestLibrary(TestCase):
 
         # TODO: I think you could use the next iterator to assert the entirety of each lists order. Likely cleaner than the following
 
+        #import ipdb; ipdb.set_trace()
         self.assertTrue(ord(catalog_sorted_by_title[0].title[0]) < ord(catalog_sorted_by_title[-1].title[0]))
         self.assertTrue(ord(catalog_sorted_by_title_in_opposite_order[0].title[0]) > ord(catalog_sorted_by_title_in_opposite_order[-1].title[0]))
         self.assertTrue(ord(catalog_sorted_by_author[0].author[0]) < ord(catalog_sorted_by_author[-1].author[0]))
