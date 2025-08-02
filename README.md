@@ -51,6 +51,7 @@ The `utilities` package contains @log and @profile decorators alongside a Change
 **Topics:**
 - open(), file reading/writing
 - json modules
+- mixins
 - dataclasses vs classic classes
 - transition from unittest to Pytest
 
