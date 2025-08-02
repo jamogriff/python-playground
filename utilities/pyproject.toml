@@ -1,0 +1,12 @@
+[project]
+name = "utilities"
+version = "0.8.0"
+description = "Misc utility decorators and context managers"
+authors = [
+  { name="Jamison Griffith", email="jamison.griffith@gmail.com" }
+]
+requires-python = ">= 3"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

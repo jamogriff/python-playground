@@ -31,21 +31,19 @@ The `jamolib` package provides the core functionality of a library's checkout sy
 Once populated, a library's book catalog can be searched with the ability to sort by author or title.
 Enter into a REPL session with `python -m jamolib` or run the tests with `pytest jamolib`
 
-## Week 3: Decorators + Context Managers + Modules
+## Week 3: Decorators + Context Managers
 
 **Topics:**
-- Function and class decorators (@wraps, @classmethod)
-- Mixins
-- with blocks + enter and exit Dunder methods
+- Functool decorators (@wraps)
+- Context managers
+- Intro to OS library
 - Strict type hint refactor with mypy
-- Interdependent package module imports
 
 **Project:**
-Write a @logger decorator to log function calls and a context manager for timing code blocks.
+The `utilities` package contains @log and @profile decorators alongside a ChangeDirectory context manager
 
 **Resources:**
 - [Typing Cheat Sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
-- [Real Python – Decorators](https://realpython.com/primer-on-python-decorators/)
 - [Python Docs – Context Managers](https://docs.python.org/3/library/contextlib.html)
 
 ## Week 4: Files, JSON, Dataclasses
