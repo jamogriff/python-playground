@@ -23,7 +23,7 @@ class Book:
         return self._id == other.id
 
     @property
-    def id(self) -> str:
+    def id(self) -> uuid.UUID:
         return self._id
 
     @property

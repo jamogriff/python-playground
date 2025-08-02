@@ -8,9 +8,9 @@ class Library:
 
     def __init__(self, name: str):
         self._name = name
-        self._users = []
-        self._books = []
-        self._checkouts = []
+        self._users: list[User] = []
+        self._books: list[Book] = []
+        self._checkouts: list[Checkout] = []
 
     def __str__(self) -> str:
         return f"{self._name}: {len(self._users)} users, {len(self._books)} books, {len(self._checkouts)} checkouts"
@@ -46,7 +46,7 @@ class Library:
         self._books.append(book)
 
     def search_catalog(
-        self, *, query: str = None, sort_by: str = "title", order: str = "desc"
+        self, *, query: str = '', sort_by: str = "title", order: str = "desc"
     ) -> list:
         """Query to search book titles or authors.
         Able to be sorted by any book property and determine result order (descending by default).
@@ -96,6 +96,10 @@ class Library:
             raise RuntimeError("This book is already in the possession of the library")
 
         most_recent_book_checkout = self._get_most_recent_checkout(book)
+
+        if most_recent_book_checkout == None:
+            raise RuntimeError('No checkout exists for a checked out book')
+
         most_recent_book_checkout.returned = time.time()
         most_recent_book_checkout.is_returned = True
 
@@ -108,7 +112,7 @@ class Library:
 
         return not most_recent_book_checkout.is_returned
 
-    def _get_most_recent_checkout(self, book: Book) -> Book | None:
+    def _get_most_recent_checkout(self, book: Book) -> Checkout | None:
         recent_checkouts = self._sort_checkouts_by_most_recent()
         return next((c for c in recent_checkouts if c.book == book), None)
 

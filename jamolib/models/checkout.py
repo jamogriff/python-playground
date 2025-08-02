@@ -12,7 +12,7 @@ class Checkout:
         self._user = user
         self._book = book
         self.checked_out = time.time()
-        self.returned = None
+        self.returned: None | float = None
         self.is_returned = False
 
     def __str__(self) -> str:
