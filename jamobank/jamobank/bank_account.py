@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, Float
 from .db import Base
 from .abstract_entity import AbstractEntity
+from jamobank.transaction import Transaction
 
 class BankAccount(Base, AbstractEntity):
     """A simple facsimile of a bank account where amounts can be withdrawn and deposited.\
@@ -9,9 +10,6 @@ class BankAccount(Base, AbstractEntity):
     __tablename__ = 'bank_account'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    balance = Column(Integer) # When to convert?
-    interest_rate = Column(Float)
-    max_transaction = Column(Integer)
 
     def __init__(self, opening_balance: float, *, interest_rate: float, max_transaction: float):
         self._assert_positive_amount(opening_balance)
@@ -20,7 +18,7 @@ class BankAccount(Base, AbstractEntity):
         self._balance = opening_balance
         self._interest_rate = interest_rate
         self._max_transaction = max_transaction
-        self._transactions = []; # TODO: make one-to-many and persist
+        self._transactions: list[Transaction] = []; # TODO: make one-to-many and persist
 
     @property
     def balance(self):
