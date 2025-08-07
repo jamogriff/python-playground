@@ -1,4 +1,5 @@
 import re
+import json
 
 class FileParser:
     """A class to parse markdown front matter and JSON files"""
@@ -25,3 +26,7 @@ class FileParser:
             front_matter[match[0]] = match[1].rstrip("\n")
 
         return front_matter
+
+    def parse_json(self, file_contents) -> dict:
+        return json.load(file_contents)
+

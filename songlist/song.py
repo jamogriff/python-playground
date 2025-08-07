@@ -7,3 +7,8 @@ class Song(JsonMixin, FrontMatterMixin):
         self.name = name
         self.artist = artist
         self.skill = skill
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Song):
+            return NotImplemented
+        return self.name == other.name and self.artist == other.artist

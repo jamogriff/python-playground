@@ -15,8 +15,9 @@ class SongService:
             if file_ext == ".md":
                 obj = self.file_parser.parse_front_matter(file)
             elif file_ext == ".json":
-                # TODO
-                pass
+                import warnings
+                warnings.warn('No intention of supporting this.', DeprecationWarning)
+                obj = self.file_parser.parse_json(file)
             else:
                 raise RuntimeError(f'Parsing {file_ext} files is not implemented')
 
