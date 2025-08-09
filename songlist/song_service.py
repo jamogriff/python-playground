@@ -19,3 +19,9 @@ class SongService:
 
         return SongFile(song, markdown)
 
+    def update_song_file(self, song_file: SongFile):
+        with open(song_file.file.path, "w") as original_file:
+            new_file_content = song_file.song.to_front_matter() + song_file.file.body
+            original_file.write(new_file_content)
+
+
