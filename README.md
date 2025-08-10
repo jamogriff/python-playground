@@ -1,11 +1,13 @@
 # Python Playground
 
-This repo serves as a 6 week challenge to get up to speed learning Python.
-The learning roadmap was developed using ChatGPT and the code was written by yours truly. The core resource for learning
-Python concepts was [the Python tutorial](https://docs.python.org/3/tutorial/index.html).
+This repo houses a 6 week challenge to get up to speed learning Python.
+The learning roadmap was initially developed using ChatGPT, but was heavily tweaked week-to-week
+to suit topics I was interested in exploring. All code was written by yours truly.
+The core resource for learning Python concepts was [the Python tutorial](https://docs.python.org/3/tutorial/index.html)
+with judicious use of ChatGPT to learn best practices.
 
 
-## Week 1 - Python Core Syntax + OOP Basics
+## Week 1: Python Core Syntax + OOP Basics
 
 **Topics:**
 - Data types, methods, classes, args/kwargs, errors
@@ -18,7 +20,7 @@ Python concepts was [the Python tutorial](https://docs.python.org/3/tutorial/ind
 **Project:**
 The Jamobank package provides the `BankAccount` class with robust deposit and withdraw methods.
 
-## Week 2: More OOP + Dunder Methods
+## Week 2: More OOP + Dunder Methods + Linting
 
 **Topics:**
 - Dunder methods
@@ -31,63 +33,54 @@ The `jamolib` package provides the core functionality of a library's checkout sy
 Once populated, a library's book catalog can be searched with the ability to sort by author or title.
 Enter into a REPL session with `python -m jamolib` or run the tests with `pytest jamolib`
 
-## Week 3: Decorators + Context Managers
+## Week 3: Decorators + Context Managers + Typing
 
 **Topics:**
 - Functool decorators (@wraps)
 - Context managers
+- Logging module
 - Intro to OS library
 - Strict type hint refactor with mypy
 
 **Project:**
 The `utilities` package contains @log and @profile decorators alongside a ChangeDirectory context manager
 
-**Resources:**
-- [Typing Cheat Sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
-- [Python Docs – Context Managers](https://docs.python.org/3/library/contextlib.html)
-
-## Week 4: Files, JSON, Dataclasses
+## Week 4: Files, stdlib modules, packages
 
 **Topics:**
-- open(), file reading/writing
-- json modules
-- mixins
-- dataclasses vs classic classes
-- transition from unittest to Pytest
+- File reading/writing, open()
+- Mixins
+- Dataclasses
+- Dict comprehensions
+- Warnings, Regex and Json modules
+- Refactor out functionality to make PyPI package
+- Python package best practices
+- Docstring best practices (PEP 257)
 
 **Project:**
-Build a object formatting/writing service where a given object can be formatted and saved into different file types
-(e.g. JSON, Markdown front matter). Wrap the service with a CLI meant for creating "Songs" which is a simple construct
-used on personal site.
+Build a CLI program to read and list Markdown files and parse their front matter. CLI can also edit the front matter
+content of a given file and then write that content back to the file. Refactors out parsing functionality to create a standalone
+PyPI package-- TODO: add link to repo here.
 
-**Resources:**
-- [Real Python – Dataclasses](https://realpython.com/python-data-classes/)
-- [Pytest Docs](https://docs.pytest.org/en/stable/)
-
-## Week 5: SQLAlchemy + Flask
+## Week 5: PyPI + SQLAlchemy + CSV module
 
 **Topics:**
-- Flask
+- Release parsing package on PyPI
+- Interfaces in Python?
+- Implement parsing package back in Week 4 project
+- CSV module
 - SQLAlchemy models + Pydantic schemas
 
 **Project:**
-Refactor above CLI to persist "Song" objects with secondary step of saving to file. CLI should also have
-the ability to list and delete entities. Duplicate CLI functionality with API endpoints (/songs/create, /songs)
+Release parsing package on PyPI and then implement back in Week 4 project. Build a module
+to parse a large CSV (and a factory to populate CSV), a service to persist data to a database with SQLAlchemy
+and a repo to select data from said database with model hydration.
 
 **Resources:**
 - [SQLAlchemy ORM Tutorial](https://docs.sqlalchemy.org/en/20/orm/quickstart.html)
 
-## Week 6: TBD -- Previously AsyncIO + Real Project or Portfolio App
+## Week 6: Django chore assignment app 
 
-**Topics:**
-- async def, await, async with
-- FastAPI async routes + async SQLAlchemy
-- Background tasks, error handling
-
-**Project Ideas:**
-REST API for a task manager
-Personal bookmarks manager with tags + search
-Public API that returns data from a JSON file or DB
-
-**Resources:**
-- [FastAPI Async Guide](https://fastapi.tiangolo.com/async/)
+**Project:**
+A Django chore assignment app with Vue components. See repo: TODO: add link
+Explore best practices for project dependency version management (this seems kinda loose in Python)

@@ -1,10 +1,10 @@
 import code
-from songlist.cli import Cli
+from .cli import Cli
 # TODO import md-front-matter-parser
 
 if __name__ == "__main__":
     # TODO: set this via ENV
-    directory = 'songlist/tests/fixtures/markdown'
+    directory = 'songlist_cli/tests/fixtures/markdown'
     cli = Cli() 
     cli.list_songs(directory)
     # local_namespace = dict(globals(), **locals())  # This is awesome

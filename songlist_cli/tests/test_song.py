@@ -1,6 +1,6 @@
 import unittest
 import json
-from songlist.song import Song
+from songlist_cli.song import Song
 
 class TestSong(unittest.TestCase):
     def test_song_can_be_serialized_to_json(self):

@@ -1,5 +1,5 @@
-from songlist.mixins.json_mixin import JsonMixin
-from songlist.mixins.front_matter_mixin import FrontMatterMixin
+from .mixins.json_mixin import JsonMixin
+from .mixins.front_matter_mixin import FrontMatterMixin
 
 class Song(JsonMixin, FrontMatterMixin):
 

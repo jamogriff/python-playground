@@ -1,6 +1,6 @@
 import unittest
-from songlist.song_service import SongService
-from songlist.song import Song
+from songlist_cli.song_service import SongService
+from songlist_cli.song import Song
 
 class TestSongService(unittest.TestCase):
     def test_able_to_parse_markdown_with_no_body(self):

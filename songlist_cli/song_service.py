@@ -1,7 +1,7 @@
 import re
-from songlist.song import Song
-from songlist.markdown.markdown_parser import MarkdownParser
-from songlist.song_file import SongFile
+from .song import Song
+# TODO pull from package from songlist.markdown.markdown_parser import MarkdownParser
+from .song_file import SongFile
 
 class SongService:
     """A service to read and write song list files"""

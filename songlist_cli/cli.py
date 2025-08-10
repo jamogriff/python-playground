@@ -1,6 +1,6 @@
 import os
-from songlist.song_service import SongService
-from songlist.song_file import SongFile
+from .song_service import SongService
+from .song_file import SongFile
 
 class Cli:
 
