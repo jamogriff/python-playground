@@ -57,6 +57,7 @@ The `utilities` package contains @log and @profile decorators alongside a Change
 - Refactor out functionality to make PyPI package
 - Python package best practices
 - Docstring best practices (PEP 257)
+- Virtual environments
 - Release parsing package on PyPI
 - Implement parsing package back in CLI project
 - Python does not have null-safe method chaining :(
