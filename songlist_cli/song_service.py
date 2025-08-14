@@ -31,7 +31,7 @@ class SongService:
             body = song_file.file.content and song_file.file.content.raw
 
             if body:
-                new_file_content += new_file_content
+                new_file_content += body
 
             original_file.write(new_file_content)
 
