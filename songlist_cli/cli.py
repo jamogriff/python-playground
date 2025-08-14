@@ -14,7 +14,10 @@ class Cli:
         song_files = {}
         song_service = SongService()
         for index, file in enumerate(files_with_pathes):
-            song_files[index] = song_service.get_song_file(file) 
+            song_file = song_service.get_song_file(file) 
+
+            if song_file:
+                song_files[index] = song_file
 
         # List the song files and prompt user to select one
         print(f"{len(song_files)} song files found:")

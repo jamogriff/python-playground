@@ -52,28 +52,27 @@ The `utilities` package contains @log and @profile decorators alongside a Change
 - Mixins
 - Dataclasses
 - Dict comprehensions
+- ABC class, `@abstractmethod`
 - Warnings, Regex and Json modules
 - Refactor out functionality to make PyPI package
 - Python package best practices
 - Docstring best practices (PEP 257)
+- Release parsing package on PyPI
+- Implement parsing package back in CLI project
 
 **Project:**
 Build a CLI program to read and list Markdown files and parse their front matter. CLI can also edit the front matter
 content of a given file and then write that content back to the file. Refactors out parsing functionality to create a standalone
-PyPI package-- TODO: add link to repo here.
+[PyPI package](https://github.com/jamogriff/markup-front-matter-parser).
 
 ## Week 5: PyPI + SQLAlchemy + CSV module
 
 **Topics:**
-- Release parsing package on PyPI
-- Interfaces in Python?
-- Implement parsing package back in Week 4 project
 - CSV module
 - SQLAlchemy models + Pydantic schemas
 
 **Project:**
-Release parsing package on PyPI and then implement back in Week 4 project. Build a module
-to parse a large CSV (and a factory to populate CSV), a service to persist data to a database with SQLAlchemy
+Build a module to parse a large CSV (and a factory to populate CSV), a service to persist data to a database with SQLAlchemy
 and a repo to select data from said database with model hydration.
 
 **Resources:**
