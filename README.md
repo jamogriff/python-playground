@@ -59,6 +59,7 @@ The `utilities` package contains @log and @profile decorators alongside a Change
 - Docstring best practices (PEP 257)
 - Release parsing package on PyPI
 - Implement parsing package back in CLI project
+- Python does not have null-safe method chaining :(
 
 **Project:**
 Build a CLI program to read and list Markdown files and parse their front matter. CLI can also edit the front matter
