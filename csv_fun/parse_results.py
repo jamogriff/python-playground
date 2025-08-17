@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from .dtos.narababy_bottle_feed_row import NarababyBottleFeedRow
-from .dtos.narababy_diaper_row import NarababyDiaperRow
+from .dtos.abstract_csv_row import AbstractCSVRow
+
 
 @dataclass
 class ParseResults:
-    feeds: list[NarababyBottleFeedRow]
-    diaper_changes: list[NarababyDiaperRow]
+    data: list[AbstractCSVRow]
     rows_processed: int
+    time_elapsed: int

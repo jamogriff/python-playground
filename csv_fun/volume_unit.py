@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class VolumeUnit(Enum):
     """Unit of volume (e.g. mL, OZ)."""
 
@@ -12,4 +13,3 @@ class VolumeUnit(Enum):
             return cls(value)
         except ValueError:
             return None
-
