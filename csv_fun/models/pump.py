@@ -4,6 +4,7 @@ from ..dtos.narababy_pump_row import NarababyPumpRow
 from ..utils import datetime_utils as date
 from .caregiver import Caregiver
 
+
 class Pump:
     """An occurrance of pumping milk."""
 
@@ -15,5 +16,7 @@ class Pump:
     def from_narababy_pump_row(cls, narababy_row: NarababyPumpRow) -> Pump:
         return cls(
             Caregiver(narababy_row.caregiver),
-            date.create_date_from_narababy_event(narababy_row.datetime, narababy_row.timezone)
+            date.create_date_from_narababy_event(
+                narababy_row.datetime, narababy_row.timezone
+            ),
         )

@@ -3,20 +3,20 @@ from abc import ABC, abstractmethod
 
 
 class NarababyEventRow(ABC):
-    registry: dict[str, EventRow] = {}
+    registry: dict[str, type["NarababyEventRow"]] = {}
     datetime: str
     timezone: str
     caregiver: str
     baby: str
     note: str
-    row_identifier: str # Subclasses must define this
+    row_identifier: str  # Subclasses must define this
 
     SHARED_COLUMN_ATTRIBUTE_MAP: dict[int, str] = {
         1: "baby",
         2: "datetime",
         4: "caregiver",
         6: "note",
-        7: "timezone"
+        7: "timezone",
     }
 
     def __init_subclass__(cls, **kwargs):

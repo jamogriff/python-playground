@@ -6,6 +6,8 @@ from .dtos.narababy_diaper_row import NarababyDiaperRow
 from .models.milk_feed import MilkFeed
 from .models.diaper_change import DiaperChange
 from .models.pump import Pump
+from .model_results import ModelResults
+
 
 class ModelFactory:
     """Class to create models with refined data from ParseResults"""
@@ -13,7 +15,7 @@ class ModelFactory:
     def __init__(self, parse_results: ParseResults):
         self.data: list[NarababyEventRow] = parse_results.data
 
-    def __call__(self) -> dict[str, MilkFeed | DiaperChange | Pump]:
+    def __call__(self) -> ModelResults:
         feeds: list[MilkFeed] = []
         diaper_changes: list[DiaperChange] = []
         pumps: list[Pump] = []
@@ -25,9 +27,4 @@ class ModelFactory:
             elif isinstance(event, NarababyPumpRow):
                 pumps.append(Pump.from_narababy_pump_row(event))
 
-        return {
-            'diapers': diaper_changes,
-            'bottles': feeds,
-            'pumps': pumps
-        }
-
+        return ModelResults(feeds, diaper_changes, pumps)

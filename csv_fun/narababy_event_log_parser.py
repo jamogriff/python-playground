@@ -1,7 +1,9 @@
 import csv
 import time
+from typing import cast
 from .dtos.narababy_event_row import NarababyEventRow
 from .parse_results import ParseResults
+from .csv_attributes import CSVAttributes
 
 
 class NarababyEventLogParser:
@@ -12,9 +14,9 @@ class NarababyEventLogParser:
         csv_attributes = self._get_csv_attributes(csv_file_path)
 
         with open(csv_file_path, "r") as f:
-            reader = csv.reader(f, csv_attributes["dialect"])
+            reader = csv.reader(f, csv_attributes.dialect)
 
-            if csv_attributes["has_header"]:
+            if csv_attributes.has_header:
                 header = next(reader)
                 print(f"Header: {header}")
 
@@ -40,12 +42,13 @@ class NarababyEventLogParser:
 
             return ParseResults(data, row_count, time_elapsed)
 
-    def _get_csv_attributes(self, csv_file_path: str) -> dict[str, csv.Dialect | bool]:
+    def _get_csv_attributes(self, csv_file_path: str) -> CSVAttributes:
         csv_sniffer = csv.Sniffer()
         with open(csv_file_path, "r") as f:
             sample = f.read(1024)
 
-        return {
-            "dialect": csv_sniffer.sniff(sample),
-            "has_header": csv_sniffer.has_header(sample),
-        }
+        # MyPy incorrectly thinks the result of sniff()
+        # is the Dialect class and not an instance of Dialect
+        return CSVAttributes(
+            cast(csv.Dialect, csv_sniffer.sniff(sample)), csv_sniffer.has_header(sample)
+        )

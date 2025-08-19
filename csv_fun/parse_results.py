@@ -6,4 +6,4 @@ from .dtos.narababy_event_row import NarababyEventRow
 class ParseResults:
     data: list[NarababyEventRow]
     rows_processed: int
-    time_elapsed: int
+    time_elapsed: float
