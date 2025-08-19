@@ -28,3 +28,27 @@ class NarababyBottleFeedRow(NarababyEventRow):
         }
 
         return {**super().column_attribute_map, **attribute_map}
+
+    def get_total_metric_milk(self) -> float:
+        total_volume = 0
+        if self.breast_feed_volume:
+            if self.breast_feed_unit == 'FLOZ':
+                #convert
+            else:
+                total_volume += float(self.breast_feed_volume)
+        
+        if self.formula_feed_volume:
+            if self.formula_feed_unit == 'FLOZ':
+                #convert
+            else:
+                total_volume += float(self.formula_feed_volume)
+
+        if self.volume:
+            if self.unit == 'FLOZ':
+                #convert
+            else:
+                total_volume += float(self.volume)
+
+        return total_volume
+
+
