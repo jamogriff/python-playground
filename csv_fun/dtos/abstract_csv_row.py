@@ -4,9 +4,20 @@ from abc import ABC, abstractmethod
 
 class AbstractCSVRow(ABC):
     registry: dict[str, AbstractCSVRow] = {}
+    datetime: str
+    timezone: str
+    caregiver: str
+    baby: str
+    note: str
+    row_identifier: str # Subclasses must define this
 
-    # Subclasses must define this
-    row_identifier: str
+    SHARED_COLUMN_ATTRIBUTE_MAP: dict[int, str] = {
+        1: "baby",
+        2: "datetime",
+        4: "caregiver",
+        6: "note",
+        7: "timezone"
+    }
 
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
@@ -29,11 +40,17 @@ class AbstractCSVRow(ABC):
 
     @property
     @abstractmethod
-    def column_attribute_map(self) -> dict[int, str]:
-        """A data map between a CSV column index and
-        the corresponding subclass attribute."""
+    def unique_column_attribute_map(self) -> dict[int, str]:
+        """Subclasses must define their own unique mappings between
+        a CSV column index and their corresponding attribute."""
 
         raise NotImplementedError
+        
+    @property
+    def column_attribute_map(self) -> dict[int, str]:
+        """Merge subclass attribute maps with shared attribute map."""
+
+        return {**self.SHARED_COLUMN_ATTRIBUTE_MAP, **self.unique_column_attribute_map}
 
     def hydrate_from_row(self, csv_row: list[str]) -> None:
         """Hydrates attributes of a subclass from a CSV row using its column_attribute_map."""
