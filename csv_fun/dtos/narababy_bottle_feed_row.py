@@ -1,8 +1,12 @@
-from .abstract_csv_row import AbstractCSVRow
+from .narababy_event_row import NarababyEventRow
 
 
-class NarababyBottleFeedRow(AbstractCSVRow):
+class NarababyBottleFeedRow(NarababyEventRow):
     row_identifier: str = "Bottle Feed"
+    breast_feed_volume: float
+    breast_feed_unit: str
+    formula_feed_volume: float
+    formula_feed_unit: str
     volume: float
     unit: str
 
@@ -10,9 +14,17 @@ class NarababyBottleFeedRow(AbstractCSVRow):
         return f"{self.volume} {self.unit} at {self.datetime} by {self.caregiver}"
 
     def __repr__(self) -> str:
-        return f"NarababyBottleFeedRow(volume={self.volume}, unit={self.unit}, datetime={self.datetime}, caregiver={self.caregiver})"
+        return f"NarababyBottleFeedRow(breast_feed_volume={self.breast_feed_volume} breast_feed_unit={self.breast_feed_unit} formula_feed_volume={self.formula_feed_volume} formula_feed_unit={self.formula_feed_unit} volume={self.volume}, unit={self.unit}, datetime={self.datetime}, caregiver={self.caregiver})"
 
     @property
-    def unique_column_attribute_map(self) -> dict[int, str]:
-        # TODO: add more feed columns
-        return {8: "volume", 9: "unit"}
+    def column_attribute_map(self) -> dict[int, str]:
+        attribute_map = {
+            9: "breast_feed_volume",
+            10: "breast_feed_unit",
+            12: "formula_feed_volume",
+            13: "formula_feed_unit",
+            14: "volume",
+            15: "unit"
+        }
+
+        return {**super().column_attribute_map, **attribute_map}

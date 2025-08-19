@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from .dtos.abstract_csv_row import AbstractCSVRow
+from .dtos.narababy_event_row import NarababyEventRow
 
 
 @dataclass
 class ParseResults:
-    data: list[AbstractCSVRow]
+    data: list[NarababyEventRow]
     rows_processed: int
     time_elapsed: int

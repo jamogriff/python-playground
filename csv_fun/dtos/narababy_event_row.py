@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
-class AbstractCSVRow(ABC):
-    registry: dict[str, AbstractCSVRow] = {}
+class NarababyEventRow(ABC):
+    registry: dict[str, EventRow] = {}
     datetime: str
     timezone: str
     caregiver: str
@@ -25,32 +25,16 @@ class AbstractCSVRow(ABC):
             raise TypeError(
                 f"{cls.__name__} must define a class attribute 'row_identifier'."
             )
-        AbstractCSVRow.registry[cls.row_identifier] = cls
-
-    # Using property results in property objects as keys
-    # in the registry, which at initial glance do not return
-    # the string values they hold
-    # @property
-    # @abstractmethod
-    # def row_identifier(self) -> str:
-    #     """The row identifier in a CSV row that corresponds
-    #     with a given subclass."""
-
-    #     raise NotImplementedError
+        NarababyEventRow.registry[cls.row_identifier] = cls
 
     @property
     @abstractmethod
-    def unique_column_attribute_map(self) -> dict[int, str]:
-        """Subclasses must define their own unique mappings between
-        a CSV column index and their corresponding attribute."""
-
-        raise NotImplementedError
-        
-    @property
     def column_attribute_map(self) -> dict[int, str]:
-        """Merge subclass attribute maps with shared attribute map."""
+        """Subclasses should define their own column attribute mappings
+        and then merge them with the shared ones provided by
+        super().column_attribute_map."""
 
-        return {**self.SHARED_COLUMN_ATTRIBUTE_MAP, **self.unique_column_attribute_map}
+        return self.SHARED_COLUMN_ATTRIBUTE_MAP
 
     def hydrate_from_row(self, csv_row: list[str]) -> None:
         """Hydrates attributes of a subclass from a CSV row using its column_attribute_map."""

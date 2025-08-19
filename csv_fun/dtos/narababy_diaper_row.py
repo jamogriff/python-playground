@@ -1,7 +1,7 @@
-from .abstract_csv_row import AbstractCSVRow
+from .narababy_event_row import NarababyEventRow
 
 
-class NarababyDiaperRow(AbstractCSVRow):
+class NarababyDiaperRow(NarababyEventRow):
     row_identifier: str = "Diaper"
     description: str | None
 
@@ -12,5 +12,7 @@ class NarababyDiaperRow(AbstractCSVRow):
         return f"NarababyDiaperRow(description={self.description}, datetime={self.datetime}, timezone={self.timezone}, caregiver={self.caregiver})"
 
     @property
-    def unique_column_attribute_map(self) -> dict[int, str]:
-        return {10: "description"}
+    def column_attribute_map(self) -> dict[int, str]:
+        attribute_map = {16: "description"}
+        shared_attributes = super().column_attribute_map
+        return {**shared_attributes, **attribute_map}

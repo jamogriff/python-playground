@@ -1,6 +1,6 @@
 import csv
 import time
-from .dtos.abstract_csv_row import AbstractCSVRow
+from .dtos.narababy_event_row import NarababyEventRow
 from .parse_results import ParseResults
 
 
@@ -19,11 +19,11 @@ class NarababyEventLogParser:
                 print(f"Header: {header}")
 
             row_count = 0
-            data: list[AbstractCSVRow] = []
+            data: list[NarababyEventRow] = []
             for row in reader:
                 row_count += 1
-                if row[0] in AbstractCSVRow.registry.keys():
-                    row_class = AbstractCSVRow.registry[row[0]]
+                if row[0] in NarababyEventRow.registry.keys():
+                    row_class = NarababyEventRow.registry[row[0]]
                     row_instance = row_class()
                     row_instance.hydrate_from_row(row)
                     data.append(row_instance)
