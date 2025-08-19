@@ -1,4 +1,5 @@
 from .narababy_event_row import NarababyEventRow
+from ..utils import volume_utils as vol
 
 
 class NarababyBottleFeedRow(NarababyEventRow):
@@ -29,23 +30,23 @@ class NarababyBottleFeedRow(NarababyEventRow):
 
         return {**super().column_attribute_map, **attribute_map}
 
-    def get_total_metric_milk(self) -> float:
+    def get_total_metric_volume(self) -> float:
         total_volume = 0
         if self.breast_feed_volume:
-            if self.breast_feed_unit == 'FLOZ':
-                #convert
+            if self.breast_feed_unit == vol.VolumeUnit.OUNCE.value:
+                total_volume += vol.fluid_ounces_to_milliliters(float(self.breast_feed_volume))
             else:
                 total_volume += float(self.breast_feed_volume)
         
         if self.formula_feed_volume:
-            if self.formula_feed_unit == 'FLOZ':
-                #convert
+            if self.formula_feed_unit == vol.VolumeUnit.OUNCE.value:
+                total_volume += vol.fluid_ounces_to_milliliters(float(self.formula_feed_volume))
             else:
                 total_volume += float(self.formula_feed_volume)
 
         if self.volume:
-            if self.unit == 'FLOZ':
-                #convert
+            if self.unit == vol.VolumeUnit.OUNCE.value:
+                total_volume += vol.fluid_ounces_to_milliliters(float(self.volume))
             else:
                 total_volume += float(self.volume)
 

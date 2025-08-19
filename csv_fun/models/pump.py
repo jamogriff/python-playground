@@ -1,6 +1,7 @@
+from __future__ import annotations
 import datetime
-from .dtos.narababy_pump_row import NarababyPumpRow
-from .datetime_service import DatetimeService
+from ..dtos.narababy_pump_row import NarababyPumpRow
+from ..utils import datetime_utils as date
 from .caregiver import Caregiver
 
 class Pump:
@@ -14,5 +15,5 @@ class Pump:
     def from_narababy_pump_row(cls, narababy_row: NarababyPumpRow) -> Pump:
         return cls(
             Caregiver(narababy_row.caregiver),
-            DatetimeService.get_from_narababy_event(narababy_row.datetime, narababy_row.timezone)
+            date.create_date_from_narababy_event(narababy_row.datetime, narababy_row.timezone)
         )
