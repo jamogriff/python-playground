@@ -4,6 +4,7 @@ from .model_factory import ModelFactory
 from .dtos.narababy_bottle_feed_row import NarababyBottleFeedRow
 from .dtos.narababy_diaper_row import NarababyDiaperRow
 from .dtos.narababy_pump_row import NarababyPumpRow
+from .db.engine import engine
 
 if __name__ == "__main__":
     p = NarababyEventLogParser()
