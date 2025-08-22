@@ -12,10 +12,10 @@ class NarababyBottleFeedRow(NarababyEventRow):
     unit: str
 
     def __str__(self) -> str:
-        return f"{self.volume} {self.unit} at {self.datetime} by {self.caregiver}"
+        return f"{self.volume} {self.unit} at {self.timestamp} by {self.caregiver}"
 
     def __repr__(self) -> str:
-        return f"NarababyBottleFeedRow(breast_feed_volume={self.breast_feed_volume} breast_feed_unit={self.breast_feed_unit} formula_feed_volume={self.formula_feed_volume} formula_feed_unit={self.formula_feed_unit} volume={self.volume}, unit={self.unit}, datetime={self.datetime}, caregiver={self.caregiver})"
+        return f"NarababyBottleFeedRow(breast_feed_volume={self.breast_feed_volume} breast_feed_unit={self.breast_feed_unit} formula_feed_volume={self.formula_feed_volume} formula_feed_unit={self.formula_feed_unit} volume={self.volume}, unit={self.unit}, timestamp={self.timestamp}, caregiver={self.caregiver})"
 
     @property
     def column_attribute_map(self) -> dict[int, str]:

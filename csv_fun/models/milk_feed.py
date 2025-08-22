@@ -22,7 +22,7 @@ class MilkFeed(Base):
     unit: Mapped[vol.VolumeUnit] = mapped_column(
         Enum(vol.VolumeUnit, name="volume_unit")
     )
-    datetime: Mapped[datetime.datetime] = mapped_column(DateTime)
+    timestamp: Mapped[datetime.datetime] = mapped_column(DateTime)
 
     baby: Mapped[Baby] = relationship(back_populates="feeds")
     caregiver: Mapped[Caregiver] = relationship(back_populates="feeds")
@@ -33,13 +33,13 @@ class MilkFeed(Base):
         caregiver: Caregiver,
         volume: float,
         unit: vol.VolumeUnit,
-        datetime: datetime.datetime,
+        timestamp: datetime.datetime,
     ):
         self.baby = baby
         self.caregiver = caregiver
         self.volume = volume
         self.unit = unit
-        self.datetime = datetime
+        self.timestamp = timestamp
 
     @classmethod
     def from_narababy_bottle_feed_row(
@@ -51,6 +51,6 @@ class MilkFeed(Base):
             narababy_row.get_total_metric_volume(),
             vol.VolumeUnit.MILLILITER,
             date.create_date_from_narababy_event(
-                narababy_row.datetime, narababy_row.timezone
+                narababy_row.timestamp, narababy_row.timezone
             ),
         )

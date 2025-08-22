@@ -1,0 +1,32 @@
+[project]
+name = "narababy_export_analyzer"
+version = "0.8.0"
+description = "Imports a Narababy CSV export and provides statistical analysis"
+authors = [
+  { name="Jamison Griffith", email="jamison.griffith@gmail.com" }
+]
+requires-python = ">= 3.10"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.ruff]
+# Match Black's line length so they don’t fight each other
+line-length = 88
+
+# Enable common linting rules
+lint.select = ["E", "F"] # Errors, Flake8
+lint.ignore = ["E501", "F401"] # Let Black handle line length
+# Ignore unused imports because NarababyEventRow registry is using the
+# init_subclass hook and needs subclasses to be initialized
+
+[tool.mypy]
+show_error_codes = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+strict = true

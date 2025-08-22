@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 class NarababyEventRow(ABC):
     registry: dict[str, type["NarababyEventRow"]] = {}
-    datetime: str
+    timestamp: str
     timezone: str
     caregiver: str
     baby: str
@@ -13,7 +13,7 @@ class NarababyEventRow(ABC):
 
     SHARED_COLUMN_ATTRIBUTE_MAP: dict[int, str] = {
         1: "baby",
-        2: "datetime",
+        2: "timestamp",
         4: "caregiver",
         6: "note",
         7: "timezone",

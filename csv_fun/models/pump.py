@@ -15,13 +15,13 @@ class Pump(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     caregiver_id: Mapped[int] = mapped_column(ForeignKey("caregiver.id"))
-    datetime: Mapped[datetime.datetime] = mapped_column(DateTime)
+    timestamp: Mapped[datetime.datetime] = mapped_column(DateTime)
 
     caregiver: Mapped[Caregiver] = relationship(back_populates="pumps")
 
-    def __init__(self, caregiver: Caregiver, datetime: datetime.datetime):
+    def __init__(self, caregiver: Caregiver, timestamp: datetime.datetime):
         self.caregiver = caregiver
-        self.datetime = datetime
+        self.timestamp = timestamp
 
     @classmethod
     def from_narababy_pump_row(
@@ -30,6 +30,6 @@ class Pump(Base):
         return cls(
             caregiver,
             date.create_date_from_narababy_event(
-                narababy_row.datetime, narababy_row.timezone
+                narababy_row.timestamp, narababy_row.timezone
             ),
         )

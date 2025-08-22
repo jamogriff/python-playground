@@ -6,10 +6,10 @@ class NarababyDiaperRow(NarababyEventRow):
     description: str | None
 
     def __str__(self) -> str:
-        return f"{self.datetime} by {self.caregiver}"
+        return f"{self.timestamp} by {self.caregiver}"
 
     def __repr__(self) -> str:
-        return f"NarababyDiaperRow(description={self.description}, datetime={self.datetime}, timezone={self.timezone}, caregiver={self.caregiver})"
+        return f"NarababyDiaperRow(description={self.description}, timestamp={self.timestamp}, timezone={self.timezone}, caregiver={self.caregiver})"
 
     @property
     def column_attribute_map(self) -> dict[int, str]:
