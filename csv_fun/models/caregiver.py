@@ -10,9 +10,11 @@ class Caregiver(Base):
     __tablename__ = "caregiver"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(100)) # TODO: how to add unique constraint
+    name: Mapped[str] = mapped_column(String(100))  # TODO: how to add unique constraint
     feeds: Mapped[List["MilkFeed"]] = relationship(back_populates="caregiver")
-    diaper_changes: Mapped[List["DiaperChange"]] = relationship(back_populates="caregiver")
+    diaper_changes: Mapped[List["DiaperChange"]] = relationship(
+        back_populates="caregiver"
+    )
     pumps: Mapped[List["Pump"]] = relationship(back_populates="caregiver")
 
     def __init__(self, name: str):
@@ -25,4 +27,3 @@ class Caregiver(Base):
         if not isinstance(other, Caregiver):
             return NotImplemented
         return self.name == other.name
-

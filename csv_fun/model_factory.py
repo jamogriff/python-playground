@@ -42,17 +42,22 @@ class ModelFactory:
             # Now process the event specific data and pass owning
             # relation instances in
             if isinstance(event, NarababyBottleFeedRow):
-                feeds.append(MilkFeed.from_narababy_bottle_feed_row(event, baby, caregiver))
+                feeds.append(
+                    MilkFeed.from_narababy_bottle_feed_row(event, baby, caregiver)
+                )
             elif isinstance(event, NarababyDiaperRow):
-                diaper_changes.append(DiaperChange.from_narababy_diaper_row(event, baby, caregiver))
+                diaper_changes.append(
+                    DiaperChange.from_narababy_diaper_row(event, baby, caregiver)
+                )
             elif isinstance(event, NarababyPumpRow):
                 pumps.append(Pump.from_narababy_pump_row(event, caregiver))
 
         return ModelResults(babies, caregivers, feeds, diaper_changes, pumps)
 
-    def _get_caregiver(self, name: str, caregivers: list[Caregiver]) -> Caregiver | None:
+    def _get_caregiver(
+        self, name: str, caregivers: list[Caregiver]
+    ) -> Caregiver | None:
         return next((c for c in caregivers if c.name == name), None)
 
     def _get_baby(self, name: str, babies: list[Baby]) -> Baby | None:
         return next((b for b in babies if b.name == name), None)
-

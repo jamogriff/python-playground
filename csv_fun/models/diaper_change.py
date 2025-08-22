@@ -40,8 +40,7 @@ class DiaperChange(Base):
 
     @classmethod
     def from_narababy_diaper_row(
-        cls, narababy_row: NarababyDiaperRow,
-        baby: Baby, caregiver: Caregiver
+        cls, narababy_row: NarababyDiaperRow, baby: Baby, caregiver: Caregiver
     ) -> DiaperChange:
         return cls(
             baby,

@@ -19,7 +19,6 @@ class Pump(Base):
 
     caregiver: Mapped[Caregiver] = relationship(back_populates="pumps")
 
-
     def __init__(self, caregiver: Caregiver, datetime: datetime.datetime):
         self.caregiver = caregiver
         self.datetime = datetime

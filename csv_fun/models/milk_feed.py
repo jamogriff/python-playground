@@ -19,9 +19,11 @@ class MilkFeed(Base):
     baby_id: Mapped[int] = mapped_column(ForeignKey("baby.id"))
     caregiver_id: Mapped[int] = mapped_column(ForeignKey("caregiver.id"))
     volume: Mapped[float] = mapped_column(Float)
-    unit: Mapped[vol.VolumeUnit] = mapped_column(Enum(vol.VolumeUnit, name="volume_unit"))
+    unit: Mapped[vol.VolumeUnit] = mapped_column(
+        Enum(vol.VolumeUnit, name="volume_unit")
+    )
     datetime: Mapped[datetime.datetime] = mapped_column(DateTime)
-    
+
     baby: Mapped[Baby] = relationship(back_populates="feeds")
     caregiver: Mapped[Caregiver] = relationship(back_populates="feeds")
 
@@ -41,8 +43,7 @@ class MilkFeed(Base):
 
     @classmethod
     def from_narababy_bottle_feed_row(
-        cls, narababy_row: NarababyBottleFeedRow,
-        baby: Baby, caregiver: Caregiver
+        cls, narababy_row: NarababyBottleFeedRow, baby: Baby, caregiver: Caregiver
     ) -> MilkFeed:
         return cls(
             baby,
