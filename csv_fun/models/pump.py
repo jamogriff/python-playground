@@ -1,7 +1,7 @@
 from __future__ import annotations
 import datetime
-from sqlalchemy import DateTime
-from sqlalchemy.orm import Mapped, mapped_column, relationship, ForeignKey
+from sqlalchemy import DateTime, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from ..dtos.narababy_pump_row import NarababyPumpRow
 from ..utils import datetime_utils as date
 from .caregiver import Caregiver
@@ -25,9 +25,11 @@ class Pump(Base):
         self.datetime = datetime
 
     @classmethod
-    def from_narababy_pump_row(cls, narababy_row: NarababyPumpRow) -> Pump:
+    def from_narababy_pump_row(
+        cls, narababy_row: NarababyPumpRow, caregiver: Caregiver
+    ) -> Pump:
         return cls(
-            Caregiver(narababy_row.caregiver),
+            caregiver,
             date.create_date_from_narababy_event(
                 narababy_row.datetime, narababy_row.timezone
             ),

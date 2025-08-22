@@ -7,13 +7,22 @@ from .base import Base
 class Caregiver(Base):
     """An individual providing services to baby."""
 
-    __table_name__ = "caregiver"
+    __tablename__ = "caregiver"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(100))
+    name: Mapped[str] = mapped_column(String(100)) # TODO: how to add unique constraint
     feeds: Mapped[List["MilkFeed"]] = relationship(back_populates="caregiver")
     diaper_changes: Mapped[List["DiaperChange"]] = relationship(back_populates="caregiver")
     pumps: Mapped[List["Pump"]] = relationship(back_populates="caregiver")
 
     def __init__(self, name: str):
         self.name = name
+
+    def __eq__(self, other) -> bool:
+        """This does not compare IDs for the sake of
+        comparing during importing."""
+
+        if not isinstance(other, Caregiver):
+            return NotImplemented
+        return self.name == other.name
+
