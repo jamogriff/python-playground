@@ -81,7 +81,7 @@ and a repo to select data from said database with model hydration. This project 
 simultaneously has broken git commits.
 
 **Resources:**
-- [SQLAlchemy ORM Tutorial](https://docs.sqlalchemy.org/en/20/orm/quickstart.html)
+- [SQLAlchemy Unified Tutorial](https://docs.sqlalchemy.org/en/20/tutorial/index.html#unified-tutorial)
 
 ## Week 7 and Beyond: Capstone Project
 
