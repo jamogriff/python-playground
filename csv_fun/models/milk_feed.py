@@ -24,8 +24,8 @@ class MilkFeed(Base):
     )
     timestamp: Mapped[datetime.datetime] = mapped_column(DateTime)
 
-    baby: Mapped[Baby] = relationship(back_populates="feeds")
-    caregiver: Mapped[Caregiver] = relationship(back_populates="feeds")
+    baby: Mapped["Baby"] = relationship(back_populates="feeds")
+    caregiver: Mapped["Caregiver"] = relationship(back_populates="feeds")
 
     def __init__(
         self,

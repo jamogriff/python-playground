@@ -21,8 +21,8 @@ class DiaperChange(Base):
     is_poop: Mapped[bool] = mapped_column(Boolean)
     is_pee: Mapped[bool] = mapped_column(Boolean)
 
-    baby: Mapped[Baby] = relationship(back_populates="diaper_changes")
-    caregiver: Mapped[Caregiver] = relationship(back_populates="diaper_changes")
+    baby: Mapped["Baby"] = relationship(back_populates="diaper_changes")
+    caregiver: Mapped["Caregiver"] = relationship(back_populates="diaper_changes")
 
     def __init__(
         self,

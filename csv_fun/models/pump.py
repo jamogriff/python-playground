@@ -17,7 +17,7 @@ class Pump(Base):
     caregiver_id: Mapped[int] = mapped_column(ForeignKey("caregiver.id"))
     timestamp: Mapped[datetime.datetime] = mapped_column(DateTime)
 
-    caregiver: Mapped[Caregiver] = relationship(back_populates="pumps")
+    caregiver: Mapped["Caregiver"] = relationship(back_populates="pumps")
 
     def __init__(self, caregiver: Caregiver, timestamp: datetime.datetime):
         self.caregiver = caregiver

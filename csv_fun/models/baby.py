@@ -1,7 +1,5 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from .milk_feed import MilkFeed
-from .diaper_change import DiaperChange
 from .base import Base
 
 
@@ -12,8 +10,8 @@ class Baby(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100))
-    feeds: Mapped[list[MilkFeed]] = relationship(back_populates="baby")
-    diaper_changes: Mapped[list[DiaperChange]] = relationship(back_populates="baby")
+    feeds: Mapped[list["MilkFeed"]] = relationship(back_populates="baby")
+    diaper_changes: Mapped[list["DiaperChange"]] = relationship(back_populates="baby")
 
     def __init__(self, name: str):
         self.name = name

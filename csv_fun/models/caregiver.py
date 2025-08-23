@@ -1,8 +1,6 @@
+from __future__ import annotations
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from .milk_feed import MilkFeed
-from .diaper_change import DiaperChange
-from .pump import Pump
 from .base import Base
 
 
@@ -13,11 +11,11 @@ class Caregiver(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100))  # TODO: how to add unique constraint
-    feeds: Mapped[list[MilkFeed]] = relationship(back_populates="caregiver")
-    diaper_changes: Mapped[list[DiaperChange]] = relationship(
+    feeds: Mapped[list["MilkFeed"]] = relationship(back_populates="caregiver")
+    diaper_changes: Mapped[list["DiaperChange"]] = relationship(
         back_populates="caregiver"
     )
-    pumps: Mapped[list[Pump]] = relationship(back_populates="caregiver")
+    pumps: Mapped[list["Pump"]] = relationship(back_populates="caregiver")
 
     def __init__(self, name: str):
         self.name = name
